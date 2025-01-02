@@ -1,0 +1,2 @@
+class MissingUserUUIDError(Exception):
+    pass

@@ -1,0 +1,42 @@
+{% load static %}
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="{% static 'js/polling.js' %}" defer></script>
+    <style>
+        /* Spinner styles */
+        .spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 0, 0, 0.3);
+            border-top: 4px solid #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto; /* Center the spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: center; text-align: center;">
+        <h1 id="welcomeMessage" style="margin-right: 10px;">Добро пожаловать на мою страничку, друг</h1>
+        <img src="{% static 'logo.png' %}" alt="Logo Image" style="width: 50px; height: auto;">
+    </div>
+    <div style="text-align: center;">
+        <button id="telegramLoginButton" data-username="{{ username }}" data-telegram-login-url="{{ telegram_login_url }}">Войти через Telegram</button>
+        <div class="spinner" id="spinner"></div>
+        <div id="error-message" style="color: red; display: none; text-align: center;"></div>
+    </div>
+    <input type="hidden" id="csrfToken" value="{{ csrf_token }}">
+</body>
+</html>
